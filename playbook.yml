@@ -1,0 +1,16 @@
+- name: Zookeeper
+  hosts: all
+  become: yes
+  tasks:
+    - name: Add Apache Bigtop repo
+      yum_repository:
+        name: Bigtop
+        description: Apache Bigtop
+        gpgcheck: yes
+        gpgkey: https://dist.apache.org/repos/dist/release/bigtop/KEYS
+        baseurl: http://repos.bigtop.apache.org/releases/1.2.1/centos/7/x86_64
+        state: present
+    - name: install zookeeper
+      yum:
+        name: zookeeper
+        state: latest
